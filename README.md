@@ -4,14 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2family=Montserrat:wqht@200;500@display=swap');
+        * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box; 
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+            color: var(--tg--there-text-color);
+            background: var(--tg--there-bg-color)
+
+        }
+
+        #main {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+
+        }
+
+        h1 {
+            margin-top: 50px;
+            margin-bottom: 10px;
+
+        }
+
+        img {
+            width: 70px;
+            margin: 30px auto;
+
+        }
+
+        p {
+            width: 358px;
+            margin: 0 auto;
+        }
+
+        button {
+            border: 0;
+            border-radius: 5px;
+            margin-top: 50px;
+            height: 68px;
+            width: 200px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 500ms ease;
+            color: var(--tg--there-button-color);
+            background: var(--tg--there-button-text-color);
+        }
+
+        #form {
+            display: none;
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            outline: none;
+            margin: 18px 5%;
+            padding: 15px 13px;
+            font-size: 14px;
+            border: 2px solid silver;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            border-color: #db5ddb;
+        }
+    </style>
 </head>
 <body>
     <div id="main">
-        <hi>Онлайн магазин</hi>
-        <img src="data:image/png;base64,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">
+        <h1>Онлайн магазин</h1>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyFdfmgKT0PII076Ge9lVLdRWKJLWuaLUa-A&s">
         <p>textTEXTtExTTexT</p>
         <button id="buy">Купить</button>
 
     </div>
+    <form id="form">
+        <h1>Оформление покупки</h1>
+        <input type="text" placeholder="Имя" id="user_name">
+        <input type="text" placeholder="Email" id="user_name">
+        <input type="text" placeholder="Телефон" id="user_name">
+        <button id="order">Оформить</button>
+    </form>
+    <script src="https://telegram.org/js/telegram-web-app.js?57"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let buy = document.getElementById('buy');
+        let order = document.getElementById('order');
+        
+
+        buy.addEventListener("click", () =>{
+            document.getElementById("main").style.display = "none";
+            document.getElementById("form").style.display = "block";
+            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name
+        });
+        order.addEventListener("click", () => {
+        
+        
+            document.getElementById("error").innerText = '';
+            let name = document.getElementById('user_name').value;
+            let email =document.getElementById('user_email').value;
+            let phone =document.getElementById('user_phone').value;
+            if(name.length < 5){
+                document.getElementById("error").innerText = 'Ошибка в имени';
+                return;
+            }
+            if(email.length < 5){
+                document.getElementById("error").innerText = 'Ошибка в email';
+                return;
+            }
+            if(phone.length < 5){
+                document.getElementById("error").innerText = 'Ошибка в номере телефона';
+                return;
+            }
+
+            let date= {
+                name: name,
+                email: email,
+                phone: phone
+            }
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        });
+    </script>
 </body>
 </html>
